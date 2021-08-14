@@ -4,13 +4,13 @@ const router = express.Router()
 
 // Get all posts
 
-router.get('/User', async (req, res) => {
+router.get('/user', async (req, res) => {
     const user = await User.find().select('Dog')
    
     res.send(user)
 })
 
-router.post("/User", async (req, res)=>{
+router.post("/user", async (req, res)=>{
     const user = new User({
         user_name: req.body.user_name,
         password: req.body.password,
@@ -23,7 +23,7 @@ router.post("/User", async (req, res)=>{
 })
 
 
-router.get("/User/:id", async (req, res)=> {
+router.get("/user/:id", async (req, res)=> {
     try {
         const user = await User.findOne({_id: req.params.id})
         res.send(user)
