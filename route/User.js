@@ -21,9 +21,9 @@ router.post('/user', async (req, res) => {
   res.send(post)
 })
 
-router.get('/user/:id', async (req, res) => {
+router.get('/user/:user_name', async (req, res) => {
   try {
-    const user = await User.findOne({ _id: req.params.id })
+    const user = await User.findOne({ user_name: req.params.user_name }).select('Dog')
     res.send(user)
   } catch {
     res.status(404)
