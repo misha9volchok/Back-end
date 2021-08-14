@@ -73,4 +73,22 @@ router.post('/login', function(req, res) {
 
 })
 
+// Insert Data to dog
+
+router.patch("/dog/:user_name", async (req, res) => {
+    try {
+        const dog = await User.findOne({user_name: req.params.user_name})
+
+        if(req.body.Dog) {
+            dog.Dog = req.body.Dog
+        }
+
+        await dog.save()
+        res.send(dog)
+    } catch {
+        res.status(401)
+        res.send({error: "dog doesn't exist!"})
+    }
+})
+
 module.exports = router
