@@ -13,7 +13,7 @@ mongoose
   app.use("/", routes) 
   app.use("/", UserRoutes)
 
-  app.listen(5000, () => {
+  app.listen(80, () => {
     console.log('Server has started!')
   })
 })
