@@ -75,20 +75,13 @@ router.post('/login', function(req, res) {
 
 // Insert Data to dog
 
-router.patch("/dog/:user_name", async (req, res) => {
-    try {
-        const dog = await User.findOne({user_name: req.params.user_name})
+router.put("/dog/:user_name", (req, res) =>{
+  let updates = req.body 
 
-        if(req.body.Dog) {
-            dog.Dog = req.body.Dog
-        }
+  User.findOneAndUpdate({user_name: req.params.user_name}, updates, {new: true})
+  .then(updatedDog => res.json(updatedDog))
+  .catch(err => res.status(400).json("Error: " + err))
 
-        await dog.save()
-        res.send(dog)
-    } catch {
-        res.status(401)
-        res.send({error: "dog doesn't exist!"})
-    }
 })
 
 module.exports = router
