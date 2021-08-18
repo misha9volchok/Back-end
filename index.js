@@ -1,3 +1,5 @@
+require('dotenv').config()
+
 const express = require('express')
 const mongoose = require('mongoose')
 const routes = require("./route/routes") 
@@ -10,7 +12,7 @@ const AllergiesRoutes = require("./route/Allergies")
 // Connect to mongoDB database
 
 mongoose
-.connect("mongodb+srv://dbadmin:Lolypop79!@node-rest-shop.tqp5k.mongodb.net/DogDB?retryWrites=true&w=majority")
+.connect(process.env.DATABASE_URL, {useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex:true})
 .then(() => {
   const app = express()
   app.use(express.json()) // express to handle middleware
@@ -25,3 +27,6 @@ mongoose
     console.log('Server has started!')
   })
 })
+
+mongoose.connection.on('error', (error) => console.error(error))
+mongoose.connection.once('open', ()=> console.log('Conected to Database'))
