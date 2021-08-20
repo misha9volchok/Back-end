@@ -6,9 +6,12 @@ const router = express.Router()
 // Get all posts
 
 router.get('/user', async (req, res) => {
-  const user = await User.find().select('Dog')
-
-  res.send(user)
+  try {
+    const user = await User.find().select('Dog')
+    res.json(user)
+  } catch (err) {
+    res.status(500).json({ message: err.message })
+  }
 })
 
 router.post('/user', async (req, res) => {
@@ -23,7 +26,9 @@ router.post('/user', async (req, res) => {
 
 router.get('/user/:user_name', async (req, res) => {
   try {
-    const user = await User.findOne({ user_name: req.params.user_name }).select('Dog')
+    const user = await User.findOne({ user_name: req.params.user_name }).select(
+      'Dog'
+    )
     res.send(user)
   } catch {
     res.status(404)
@@ -53,38 +58,37 @@ router.post('/register', async (req, res) => {
 
 // ###### LOGIN ###### //
 
-router.post('/login', function(req, res) {
-    const user_name  = req.body.user_name;
-    const password = req.body.password;
+router.post('/login', function (req, res) {
+  const user_name = req.body.user_name
+  const password = req.body.password
 
-    User.findOne({user_name: user_name, password:password}, function(err, user){
-        if(err) {
-            console.log(err);
-            return res.status(500).send({error: "send request error"});
-        }
+  User.findOne({ user_name: user_name, password: password }, function (
+    err,
+    user
+  ) {
+    if (err) {
+      console.log(err)
+      return res.status(500).send({ error: 'send request error' })
+    }
 
-        if (!user) {
-            return res.status(404).send({error: "User doest not exist"});
-        }
+    if (!user) {
+      return res.status(404).send({ error: 'User doest not exist' })
+    }
 
-        return res.status(200).json({user_name:user_name});
-    })
-
-
+    return res.status(200).json({ user_name: user_name })
+  })
 })
 
 // Insert Data to dog
 
-router.put("/dog/:user_name", (req, res) =>{
-  let updates = req.body 
+router.put('/dog/:user_name', (req, res) => {
+  let updates = req.body
 
-  User.findOneAndUpdate({user_name: req.params.user_name}, updates, {new: true})
-  .then(updatedDog => res.json(updatedDog))
-  .catch(err => res.status(400).json("Error: " + err))
-
+  User.findOneAndUpdate({ user_name: req.params.user_name }, updates, {
+    new: true
+  })
+    .then(updatedDog => res.json(updatedDog))
+    .catch(err => res.status(400).json('Error: ' + err))
 })
-
-
-
 
 module.exports = router

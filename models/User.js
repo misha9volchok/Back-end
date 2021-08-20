@@ -29,7 +29,7 @@ const schema = mongoose.Schema(
         vaccines: [
           {
             name: String,
-            date: Date
+            date: {type:Date, default: Date.now}
           }
         ],
         food: [
