@@ -5,6 +5,8 @@ const mongoose = require('mongoose')
 const routes = require("./route/routes") 
 const UserRoutes = require("./route/User")
 const BreedsRoutes = require("./route/Breeds")
+const UserLoginRoutes = require("./route/User/userLogin")
+const UserRegisterRoutes = require("./route/User/userRegister")
 //const FoodRoutes = require("./route/Food")
 const AllergiesRoutes = require("./route/Allergies")
 //const VaccinesRoutes = require("./route/Vaccines")
@@ -21,6 +23,8 @@ mongoose
   app.use("/", BreedsRoutes)
   //app.use("/", FoodRoutes)
   app.use("/", AllergiesRoutes)
+  app.use("/", UserLoginRoutes)
+  app.use("/", UserRegisterRoutes)
  // app.use("/", VaccinesRoutes)
 
   app.listen(80, () => {

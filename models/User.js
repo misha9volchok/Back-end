@@ -11,7 +11,7 @@ const schema = mongoose.Schema(
         sex: String,
         weight: String,
         age: Number,
-        Breed: [
+        Breed: 
           {
             Name: String,
             Origin: String,
@@ -24,7 +24,7 @@ const schema = mongoose.Schema(
             EasyTraining: Boolean,
             Intelligence: Number
           }
-        ],
+        ,
         allergy: [String],
         vaccines: [
           {

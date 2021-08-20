@@ -14,15 +14,15 @@ router.get('/user', async (req, res) => {
   }
 })
 
-router.post('/user', async (req, res) => {
-  const user = new User({
-    user_name: req.body.user_name,
-    password: req.body.password
-  })
+// router.post('/user', async (req, res) => {
+//   const user = new User({
+//     user_name: req.body.user_name,
+//     password: req.body.password
+//   })
 
-  await post.save()
-  res.send(post)
-})
+//   await post.save()
+//   res.send(post)
+// })
 
 router.get('/user/:user_name', async (req, res) => {
   try {
@@ -34,49 +34,6 @@ router.get('/user/:user_name', async (req, res) => {
     res.status(404)
     res.send({ error: "User doesn't exist!" })
   }
-})
-// ##### CREATE NEW USER ##### //
-
-router.post('/register', async (req, res) => {
-  // Check email not registered
-  await User.findOne({ Email: req.body.Email }).then(user => {
-    if (user) {
-      // return 400 if email exists
-      return res.status(400).json({ Email: 'Alredy exists' })
-    } else {
-      // Create new User
-      const newUser = new User({
-        user_name: req.body.user_name,
-        password: req.body.password,
-        Email: req.body.Email
-      })
-      newUser.save()
-      return res.status(200).json({ msg: newUser })
-    }
-  })
-})
-
-// ###### LOGIN ###### //
-
-router.post('/login', function (req, res) {
-  const user_name = req.body.user_name
-  const password = req.body.password
-
-  User.findOne({ user_name: user_name, password: password }, function (
-    err,
-    user
-  ) {
-    if (err) {
-      console.log(err)
-      return res.status(500).send({ error: 'send request error' })
-    }
-
-    if (!user) {
-      return res.status(404).send({ error: 'User doest not exist' })
-    }
-
-    return res.status(200).json({ user_name: user_name })
-  })
 })
 
 // Insert Data to dog
@@ -92,3 +49,5 @@ router.put('/dog/:user_name', (req, res) => {
 })
 
 module.exports = router
+
+
