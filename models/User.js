@@ -1,5 +1,6 @@
 const mongoose = require('mongoose')
 
+
 const schema = mongoose.Schema(
   {
     user_name:String,
@@ -7,6 +8,7 @@ const schema = mongoose.Schema(
     Email: { type: String, unique: true, match: /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/ },
     Dog: [
       {
+        //dogIndex: {type: Number, required: true},
         name: String,
         sex: String,
         weight: String,
@@ -40,12 +42,14 @@ const schema = mongoose.Schema(
             calories_grams: Number
           }
         ]
-      }
-    ]
+      }]
+    
   },
   {
     collection: 'User'
   }
 )
 
+
 module.exports = mongoose.model('User', schema)
+
