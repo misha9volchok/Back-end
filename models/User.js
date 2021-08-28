@@ -4,7 +4,7 @@ const mongoose = require('mongoose')
 const schema = mongoose.Schema(
   {
     user_name:{type: String, required: true},
-    password: {type: String, required: true, match: "^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$"},
+    password: {type: String, required: true},
     Email: { type: String, unique: true, match: /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/ },
     Dog: [
       {
