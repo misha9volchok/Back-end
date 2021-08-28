@@ -8,10 +8,8 @@ const UserLoginRoutes = require("./route/User/userLogin")
 const UserRegisterRoutes = require("./route/User/userRegister")
 const userDogUpdateRoutes = require("./route/User/userDogUpdate")
 const userAddNewDogRotues = require("./route/User/userAddNewDog")
-//const userDogCreateRoute = require("./route/User/userDogCreate")
-//const FoodRoutes = require("./route/Food")
 const AllergiesRoutes = require("./route/Allergies")
-//const VaccinesRoutes = require("./route/Vaccines")
+
 
 // Connect to mongoDB database
 
@@ -22,14 +20,12 @@ mongoose
   app.use(express.json()) // express to handle middleware
   app.use("/", UserRoutes)
   app.use("/", BreedsRoutes)
-  //app.use("/", FoodRoutes)
   app.use("/", AllergiesRoutes)
   app.use("/", UserLoginRoutes)
   app.use("/", UserRegisterRoutes)
   app.use("/",userDogUpdateRoutes)
   app.use("/",userAddNewDogRotues)
-  //app.use("/",userDogCreateRoute)
- // app.use("/", VaccinesRoutes)
+
 
   app.listen(80, () => {
     console.log('Server has started!')
