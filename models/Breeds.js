@@ -1,8 +1,8 @@
 const mongoose = require('mongoose')
 
 const schema = mongoose.Schema({
-    Breed: String,
-    Origin: String,
+    Breed: {type: String, required: true},
+    Origin: {type: String, required: true},
     BreedGroup: String,
     Size: String,
     Type: String,
