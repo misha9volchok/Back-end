@@ -1,14 +1,11 @@
 const express = require('express')
 const Allergies = require("../models/Allergies") 
 const router = express.Router()
+const getAllegries = require('../../controllers/allegries')
 
 
 //get all breeds
-router.get('/allergies', async (req, res) => {
-    const allergies = await Allergies.find()
-   
-    res.send(allergies)
-})
+router.get('/allergies',getAllegries.allergies)
 
 //get breed by name
 router.get('/allergies/:allergy', async (req, res)=> {
