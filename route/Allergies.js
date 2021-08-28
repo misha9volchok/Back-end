@@ -1,7 +1,7 @@
 const express = require('express')
 const Allergies = require("../models/Allergies") 
 const router = express.Router()
-const getAllegries = require('../../controllers/allegries')
+const getAllegries = require('../controllers/allergies')
 
 
 //get all breeds
