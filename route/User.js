@@ -14,27 +14,6 @@ router.get('/user', async (req, res) => {
   }
 })
 
-// router.post('/user', async (req, res) => {
-//   const user = new User({
-//     user_name: req.body.user_name,
-//     password: req.body.password
-//   })
-
-//   await post.save()
-//   res.send(post)
-// })
-
-router.get('/user/:user_name', async (req, res) => {
-  try {
-    const user = await User.findOne({ user_name: req.params.user_name }).select(
-      'Dog'
-    )
-    res.send(user)
-  } catch {
-    res.status(404)
-    res.send({ error: "User doesn't exist!" })
-  }
-})
 
 // Insert Data to dog
 
