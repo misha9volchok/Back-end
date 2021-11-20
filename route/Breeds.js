@@ -5,12 +5,15 @@ const getAllBreedsController = require('../controllers/breeds')
 
 
 //get all breeds
-router.get('/breeds', getAllBreedsController.getBreeds)
+router.get('/all_breeds', getAllBreedsController.getBreeds)
 
 //get breed by name
-router.get('/breeds/:Breed', async (req, res)=> {
+router.get('/breeds', async (req, res)=> {
     try {
-        const breed = await Breeds.findOne({Breed: req.params.Breed})
+        const a = req.query.Breed;
+        console.log(a);
+        const breed = await Breeds.findOne({Breed: a})
+        console.log(breed);
         res.send(breed)
     } catch {
         res.status(401)
