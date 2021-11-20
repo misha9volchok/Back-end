@@ -2,16 +2,17 @@ const mongoose = require('mongoose')
 const bcrypt = require('bcrypt')
 const User = require('../models/User')
 
+
 exports.login = (req, res) => {
-  const user_name = req.body.user_name
-  const password = req.body.password
+  const user_name = req.query.user_name
+  const password = req.query.password
 
   User.findOne({ user_name: user_name}, function (
     err,
     user
   ) {
     // password encription module
-    bcrypt.compare(req.body.password, password, (err, result) => {
+    bcrypt.compare(req.query.password, password, (err, result) => {
       if (err) {
         console.log(err)
         return res.status(500).send({ error: 'send request error' })
