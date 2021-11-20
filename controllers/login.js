@@ -10,6 +10,7 @@ exports.login = (req, res) => {
     err,
     user
   ) {
+    // password encription module
     bcrypt.compare(req.body.password, password, (err, result) => {
       if (err) {
         console.log(err)
