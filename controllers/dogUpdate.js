@@ -4,7 +4,7 @@ exports.dogUpdate = async (req, res) => {
 	try {
 		const updateDog = await User.findOne({ _id: req.params.id })
 
-    updateDog.Dog[req.body.dogIndex] = req.body
+    updateDog.Dog[req.query.dogIndex] = req.body
 
 		await updateDog.save()
 		res.send(updateDog)
