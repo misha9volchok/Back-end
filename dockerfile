@@ -1,13 +1,15 @@
-FROM node:12
+FROM node:12-alpine
 
 WORKDIR /
+
+COPY . .
 
 COPY package*.json ./
 
 
 RUN npm install
 
-COPY . .
+RUN npm install bcrypt
 
 ENV PORT=80
 
