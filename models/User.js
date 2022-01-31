@@ -9,15 +9,15 @@ const schema = mongoose.Schema(
     Dog: [
       {
         //dogIndex: {type: Number, required: true},
-        name: {type: String, required: true},
-        sex: {type: String, required: true},
+        name: {type: String},
+        sex: {type: String},
         weight: String,
-        age: {type: Number, required: true},
+        age: {type: Number},
         Breed: 
           {
-            Name: {type: String, required: true},
-            Origin: {type: String, required: true},
-            Breeding: {type: String, required: true},
+            Name: {type: String},
+            Origin: {type: String},
+            Breeding: {type: String},
             LifeSpam: [String],
             Height: [String],
             weight: [String],
@@ -30,7 +30,7 @@ const schema = mongoose.Schema(
         allergy: [String],
         vaccines: [
           {
-            name: {type: String, required: true},
+            name: {type: String},
             date: {type:Date, default: Date.now}
           }
         ],
