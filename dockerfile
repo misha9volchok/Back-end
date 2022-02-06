@@ -24,6 +24,8 @@ WORKDIR /app
 
 COPY package*.json ./
 
+COPY . /app
+
 RUN apk add --no-cache make gcc g++ python3 && \
   npm install && \
   npm rebuild bcrypt --build-from-source && \
