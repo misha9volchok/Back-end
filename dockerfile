@@ -14,8 +14,6 @@ RUN apk add --no-cache make gcc g++ python3 && \
 
 #RUN npm install
 
-COPY . /app
-
 EXPOSE  80
 
 CMD ["node", "index.js"]
